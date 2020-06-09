@@ -1,1 +1,1 @@
-web: cd src/testDT/ && gunicorn testDT.wsgi --log-file -
+web: cd src/testDT/ && python3 manage.py migrate && gunicorn testDT.wsgi --log-file -
