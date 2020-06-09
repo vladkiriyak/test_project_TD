@@ -1,0 +1,1 @@
+web: gunicorn src.testDT.testDT.wsgi --log-file -
