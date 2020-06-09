@@ -1,3 +1,3 @@
 /src/testDT/.idea/
 /src/testDT/venv/
-.idea
+#.idea
