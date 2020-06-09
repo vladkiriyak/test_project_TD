@@ -7,13 +7,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('news', '0001_initial'),
+        ("news", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='comment',
-            name='create_date',
-            field=models.CharField(default=datetime.datetime(2020, 6, 9, 8, 10, 20, 775080), max_length=256),
+            model_name="comment",
+            name="create_date",
+            field=models.CharField(
+                default=datetime.datetime(2020, 6, 9, 8, 10, 20, 775080), max_length=256
+            ),
         ),
     ]

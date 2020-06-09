@@ -14,5 +14,5 @@ class Post(models.Model):
 class Comment(models.Model):
     username = models.CharField(max_length=256)
     text = models.CharField(max_length=8192)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
     create_date = models.CharField(max_length=256, default=datetime.now())

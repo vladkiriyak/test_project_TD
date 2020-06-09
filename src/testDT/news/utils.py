@@ -10,7 +10,7 @@ def get_uuid() -> str:
 
 def insert_urls(data: dict) -> dict:
     for d in data:
-        d['url'] = BASE_URL + 'news/post/' + d['uuid']
+        d["url"] = BASE_URL + "news/post/" + d["uuid"]
 
     return data
 
@@ -18,4 +18,3 @@ def insert_urls(data: dict) -> dict:
 def get_post_id(uuid: str) -> int:
     post = Post.objects.get(uuid=uuid)
     return post.id
-

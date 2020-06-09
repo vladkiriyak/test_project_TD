@@ -2,12 +2,16 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Post, Comment
-from .serializers import PostListSerializer, PostSerializer, CommentCreateSerializer, PostCreateSerializer
+from .serializers import (
+    PostListSerializer,
+    PostSerializer,
+    CommentCreateSerializer,
+    PostCreateSerializer,
+)
 from .utils import get_uuid, insert_urls, get_post_id
 
 
 class PostListView(APIView):
-
     def get(self, request):
         posts = Post.objects.all()
         serializer = PostListSerializer(posts, many=True)
@@ -17,7 +21,6 @@ class PostListView(APIView):
 
 
 class PostView(APIView):
-
     def get(self, request, uuid):
         post = Post.objects.get(uuid=uuid)
         serializer = PostSerializer(post)
@@ -25,7 +28,7 @@ class PostView(APIView):
 
     def put(self, request, uuid, method):
 
-        if method == 'upvote':
+        if method == "upvote":
             post = Post.objects.get(uuid=uuid)
             post.votes += 1
 
@@ -40,7 +43,7 @@ class PostView(APIView):
 
     def post(self, request):
         data = request.data
-        data['uuid'] = get_uuid()
+        data["uuid"] = get_uuid()
         post = PostCreateSerializer(data=data)
         if post.is_valid():
             post.save()
@@ -56,9 +59,8 @@ class PostView(APIView):
 
 
 class CommentView(APIView):
-
     def delete(self, request):
-        comment = Comment.objects.get(uuid=request.data['id'])
+        comment = Comment.objects.get(uuid=request.data["id"])
         if comment:
             comment.delete()
             return Response(status=204)
@@ -69,12 +71,12 @@ class CommentView(APIView):
         data = request.data
         comment_serializer = CommentCreateSerializer(data=data)
         if comment_serializer.is_valid():
-            comment_serializer.save(id=data['id'])
+            comment_serializer.save(id=data["id"])
             return Response(status=204)
 
     def post(self, request):
         data = request.data
-        data['post'] = get_post_id(uuid=request.data['post'])
+        data["post"] = get_post_id(uuid=request.data["post"])
         comment = CommentCreateSerializer(data=data)
         if comment.is_valid():
             comment.save()
