@@ -1,1 +1,1 @@
-web: gunicorn src.testDT.testDT.wsgi --log-file -
+web: cd src/testDT/ && gunicorn testDT.wsgi --log-file -
